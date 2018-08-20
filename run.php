@@ -50,10 +50,20 @@ foreach ($classes as $class) {
     }
 }
 
+echo '<?php';
+echo PHP_EOL;
+echo PHP_EOL;
+echo 'return [';
+echo PHP_EOL;
+
 foreach ($functionMap as $method => $arguments) {
     $parameters = '';
 
     foreach ($arguments as $name => $type) {
+        if ($name === 0) {
+            continue;
+        }
+
         $parameters .= sprintf(
             ', \'%s\'=>\'%s\'',
             $name,
@@ -70,3 +80,6 @@ foreach ($functionMap as $method => $arguments) {
 
     echo PHP_EOL;
 }
+
+echo '];';
+echo PHP_EOL;
